@@ -53,7 +53,7 @@ create sequence emp_seq
     maxvalue 100000;
 
 create table emp01(
-    empno    number(4) primary key,
+    empno    varchar2(10) primary key,
     ename    varchar2(10),
     hiredate date
 );
@@ -61,6 +61,22 @@ create table emp01(
 insert into emp01
     values(emp_seq.nextval,'julia',sysdate);
 
+-- 사원번호 형식: 년도(4자리) + 일련번호(6자리)
+-- ex)2021000002
+select emp_seq.currval
+from dual;
+
+select to_char(sysdate,'YYYY')
+from dual;
+
+select lpad(emp_seq.currval,6,'0')
+from dual;
+
+insert into emp01
+    values(to_char(sysdate,'YYYY') || lpad(emp_seq.nextval,6,'0') ,'ban',sysdate);
+    
+select * from emp01;    
+    
 create index idx_emp01_ename
     on emp01(ename);
 
