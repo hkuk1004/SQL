@@ -41,21 +41,27 @@ to roletest01;
 
 grant roletest01 
 to usertest01;
-
+--hr--
 grant select 
 on employee 
 to roletest01;
-
+--hr--
 select * 
 from role_sys_privs
 where role like '%TEST%';
-
+--hr--
+select * from user_role_privs;
+--hr--
+select * from role_tab_privs;
+--hr--
 drop role roletest01;
-
+--hr--
 create role roletest02;
-
+--hr--
 grant select
 on employee
 to roletest02;
 
 grant roletest02 to usertest01;
+
+
